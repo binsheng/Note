@@ -83,7 +83,6 @@ public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         swipe.setOnRefreshListener(this);
         recycleView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recycleView.setItemAnimator(new DefaultItemAnimator());
-//        recycleView.addItemDecoration();
         adapter = new MainFragmentRecycleViewAdapter(getContext());
         recycleView.setAdapter(adapter);
         if (adapter.getItemCount() == 0) {
