@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.SettingsActivity">
+
+    <include layout="@layout/toolbar" />
+
+    <com.dev.bins.note.views.OptionSwitch
+        android:id="@+id/switch_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        app:desc_off="拷贝服务已关闭"
+        app:desc_on="拷贝服务已开启"
+        app:show_title="是否开启拷贝服务"></com.dev.bins.note.views.OptionSwitch>
+
+    <com.dev.bins.note.views.OptionSwitch
+        android:id="@+id/notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        app:desc_off="通知栏快捷开启以关闭"
+        app:desc_on="通知栏快捷开启以打开"
+        app:show_title="是否开启通知栏快捷开关" />
+
+
+</LinearLayout>
