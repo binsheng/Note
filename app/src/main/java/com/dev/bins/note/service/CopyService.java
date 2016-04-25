@@ -1,13 +1,12 @@
 package com.dev.bins.note.service;
 
-import android.app.IntentService;
 import android.app.Service;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Intent;
 import android.os.IBinder;
 import android.text.TextUtils;
-import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.dev.bins.note.model.Category;
 import com.dev.bins.note.model.Note;
@@ -19,13 +18,8 @@ import java.util.Date;
 
 public class CopyService extends Service implements ClipboardManager.OnPrimaryClipChangedListener {
 
-    private WindowManager windowManager;
     private ClipboardManager clipboardManager;
-
-    private boolean viewIsAdd = false;
-
-
-
+    private String mPreText="";
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
@@ -36,7 +30,6 @@ public class CopyService extends Service implements ClipboardManager.OnPrimaryCl
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         clipboardManager.addPrimaryClipChangedListener(this);
         return super.onStartCommand(intent, flags, startId);
@@ -46,9 +39,14 @@ public class CopyService extends Service implements ClipboardManager.OnPrimaryCl
     public void onPrimaryClipChanged() {
         if (clipboardManager.hasPrimaryClip()) {
             ClipData clipData = clipboardManager.getPrimaryClip();
-            String data = clipData.getItemAt(0).getText().toString();
+            String data = clipData.getItemAt(0).coerceToText(getApplicationContext()).toString();
             if (TextUtils.isEmpty(data))
                 return;
+            if (mPreText.equals(data)){
+                return;
+            }else {
+                mPreText = data;
+            }
             Note note = new Note();
             note.setTitle("无标题");
             note.setContent(data);
