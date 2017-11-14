@@ -13,16 +13,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.dev.bins.note.R
 import com.dev.bins.note.adapter.TrashRecycleAdapter
 import com.dev.bins.note.model.Category
 import com.dev.bins.note.model.Note
-
-import org.litepal.crud.DataSupport
-
-import butterknife.ButterKnife
-import butterknife.InjectView
 
 
 /**
@@ -31,9 +25,7 @@ import butterknife.InjectView
 class TrashFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
 
-    @InjectView(R.id.recycleView)
     internal var recycleView: RecyclerView? = null
-    @InjectView(R.id.swipe)
     internal var swipe: SwipeRefreshLayout? = null
 
     private val handler = object : Handler() {
@@ -53,7 +45,6 @@ class TrashFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater!!.inflate(R.layout.fragment_trash, container, false)
-        ButterKnife.inject(this, view)
         swipe!!.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
@@ -75,17 +66,7 @@ class TrashFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        ButterKnife.reset(this)
-    }
-
     override fun onRefresh() {
 
-        val notes = DataSupport.where("isshow =? and category_id=?", "0", Category.DEFAULT.toString()).order("date desc").find<Note>(Note::class.java)
-        val msg = Message.obtain()
-        msg.what = 1
-        msg.obj = notes
-        handler.sendMessageDelayed(msg, 3000)
     }
 }// Required empty public constructor

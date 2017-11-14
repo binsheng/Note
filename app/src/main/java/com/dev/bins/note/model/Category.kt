@@ -1,13 +1,12 @@
 package com.dev.bins.note.model
 
-import org.litepal.crud.DataSupport
-
-import java.util.ArrayList
+import com.raizlabs.android.dbflow.structure.BaseModel
+import java.util.*
 
 /**
  * Created by bin on 11/24/15.
  */
-class Category : DataSupport() {
+class Category: BaseModel() {
 
 
     var id: Long = 0

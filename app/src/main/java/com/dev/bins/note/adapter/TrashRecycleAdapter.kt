@@ -4,15 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-
 import com.dev.bins.note.R
 import com.dev.bins.note.model.Note
 import com.dev.bins.note.ui.DetailActivity
-
-import org.litepal.crud.DataSupport
-
 import java.text.SimpleDateFormat
 
 /**
@@ -24,7 +19,7 @@ class TrashRecycleAdapter(private val context: Context) : RecyclerView.Adapter<H
 
     init {
         sdf = SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss")
-        notes = DataSupport.where("isshow = ?", "0").order("date desc").find(Note::class.java)
+        notes = ArrayList()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {

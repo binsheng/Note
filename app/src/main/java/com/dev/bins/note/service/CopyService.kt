@@ -1,19 +1,15 @@
 package com.dev.bins.note.service
 
 import android.app.Service
-import android.content.ClipData
 import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.os.IBinder
 import android.text.TextUtils
-import android.widget.Toast
-
 import com.dev.bins.note.model.Category
 import com.dev.bins.note.model.Note
-
-import org.litepal.crud.DataSupport
-
-import java.util.Date
+import com.raizlabs.android.dbflow.kotlinextensions.save
+import java.util.*
 
 
 class CopyService : Service(), ClipboardManager.OnPrimaryClipChangedListener {
@@ -50,9 +46,6 @@ class CopyService : Service(), ClipboardManager.OnPrimaryClipChangedListener {
             note.isShow = true
             note.save()
 
-            val category = DataSupport.find<Category>(Category::class.java, Category.CLIPBOARD.toLong())
-            category.notes.add(note)
-            category.save()
         }
     }
 

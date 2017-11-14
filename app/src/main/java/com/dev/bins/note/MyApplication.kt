@@ -1,20 +1,18 @@
 package com.dev.bins.note
 
-import com.dev.bins.note.utils.InitData
-import com.dev.bins.note.utils.SharePreference
-
-import org.litepal.LitePalApplication
+import android.app.Application
+import com.raizlabs.android.dbflow.config.FlowManager
 
 /**
  * Created by bin on 11/24/15.
  */
-class MyApplication : LitePalApplication() {
+class MyApplication : Application() {
+
+
     override fun onCreate() {
         super.onCreate()
-        val isFirst = SharePreference.readFromSharePerference(applicationContext, SharePreference.IS_FIRST)
-        if (isFirst) {
-            InitData.initCategory()
-            SharePreference.saveToSharePerference(applicationContext, SharePreference.IS_FIRST, false)
-        }
+        FlowManager.init(this)
     }
+
+
 }

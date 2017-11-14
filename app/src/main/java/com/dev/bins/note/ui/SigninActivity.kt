@@ -5,10 +5,10 @@ import android.os.Bundle
 
 import com.dev.bins.note.R
 
-class SignActivity : AppCompatActivity() {
+class SigninActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign)
+        setContentView(R.layout.activity_signin)
     }
 }
