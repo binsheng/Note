@@ -7,6 +7,7 @@ import android.os.Handler
 import android.os.Message
 
 import com.dev.bins.note.R
+import com.dev.bins.note.ui.main.MainActivity
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.

@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.main.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -38,7 +38,7 @@
             android:name=".ui.AddNoteActivity"
             android:label="@string/title_activity_add_note"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.SigninActivity"></activity>
+        <activity android:name=".ui.SigninActivity"/>
     </application>
 
 </manifest>
