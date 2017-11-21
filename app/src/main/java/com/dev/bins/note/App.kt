@@ -6,7 +6,7 @@ import com.raizlabs.android.dbflow.config.FlowManager
 /**
  * Created by bin on 11/24/15.
  */
-class MyApplication : Application() {
+class App : Application() {
 
 
     override fun onCreate() {
