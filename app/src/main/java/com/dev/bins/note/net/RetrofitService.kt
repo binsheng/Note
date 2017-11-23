@@ -8,29 +8,23 @@ import retrofit2.converter.gson.GsonConverterFactory
 /**
  * Created by bin on 21/11/2017.
  */
-class RetrofitService private constructor(host: String) {
+class RetrofitService private constructor() {
 
 
     companion object {
         val LEANOTE_HOST = "https://leanote.com"
-        var instance: RetrofitService? = null
+        private var INSTANCE =  RetrofitService()
 
-        fun getInstance(host: String): RetrofitService {
-            if (null == instance) {
-                synchronized(RetrofitService::class) {
-                    if (null == instance) {
-                        instance = RetrofitService(host)
-                    }
-                }
-            }
-            return instance!!
+        fun getInstance(): RetrofitService {
+            return INSTANCE
         }
+
     }
 
-    val retrofit: Retrofit
-    val apiServer:Api
+    var retrofit: Retrofit? = null
+    var apiServer:Api? = null
 
-    init {
+    fun init(host:String) {
         val builder = OkHttpClient.Builder()
         val client = builder.build()
 
@@ -40,7 +34,7 @@ class RetrofitService private constructor(host: String) {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
-        apiServer = retrofit.create(Api::class.java)
+        apiServer = retrofit!!.create(Api::class.java)
 
     }
 

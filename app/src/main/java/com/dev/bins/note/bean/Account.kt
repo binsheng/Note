@@ -31,5 +31,12 @@ class Account :BaseModel(){
 
     var host = ""
 
+    var usn = 0
+
+    var noteUsn = 0
+
+    var noteBookUsn = 0
+
+    var lastSyncUsn:Long = 0
 
 }
